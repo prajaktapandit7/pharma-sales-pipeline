@@ -3,7 +3,6 @@
 ## Overview
 This Lakeflow Spark Declarative Pipeline implements a medallion architecture (Bronze → Silver → Gold) for pharmaceutical sales data analytics. The pipeline processes historical sales data from S3, performs dimensional enrichment, and produces business-ready analytics including market share and year-over-year growth metrics.
 
-**Pipeline ID**: `396add4f-b43d-4921-b39b-9c64638f585e`  
 **Catalog**: `pharma`  
 **Mode**: Serverless, Triggered (weekly schedule)
 
