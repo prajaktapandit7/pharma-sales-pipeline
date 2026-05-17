@@ -6,6 +6,8 @@ This Lakeflow Spark Declarative Pipeline implements a medallion architecture (Br
 **Catalog**: `pharma`  
 **Mode**: Serverless, Triggered (weekly schedule)
 
+<img width="1017" height="336" alt="Screenshot 2026-05-17 021414" src="https://github.com/user-attachments/assets/3671e539-9324-43d4-b1a2-880c5ec88827" />
+
 ---
 
 ## Data Source & Business Goal
