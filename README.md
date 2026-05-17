@@ -13,7 +13,6 @@ This Lakeflow Spark Declarative Pipeline implements a medallion architecture (Br
 ### Source Data
 * **Location**: S3 bucket `s3://amazon-l0-landing-prod`
 * **Format**: CSV files with pharmaceutical sales data
-* **Base Table**: `pharma.default.table`
 * **Time Range**: 2014-2019 (6 years)
 * **Granularity**: Daily sales records with temporal attributes
 
