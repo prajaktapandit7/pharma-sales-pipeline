@@ -33,19 +33,19 @@ def silver_pharma_enriched():
     
     # Select relevant columns and add processing timestamp
     return enriched.select(
-        "datum",
-        "Year",
-        "Month",
-        "Hour",
-        "weekday_name",
-        "prod_id",
-        "prod_nm",
-        "mkt_id",
-        "mkt_nm",
-        "tb_id",
-        "tb_nm",
-        "sales",
-        "_source_file",
-        "_loaded_at",
+        F.col("datum"),
+        F.col("Year"),
+        F.col("Month"),
+        F.col("Hour"),
+        F.col("weekday_name"),
+        F.col("prod_id"),
+        F.col("prod_nm"),
+        F.col("mkt_id"),
+        F.col("mkt_nm"),
+        F.col("tb_id"),
+        F.col("tb_nm"),
+        F.col("sales"),
+        F.col("_source_file"),
+        raw["_loaded_at"].alias("_loaded_at"),  # Explicitly use raw table's timestamp
         F.current_timestamp().alias("_processed_at")
     )

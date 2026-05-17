@@ -13,11 +13,11 @@ def bronze_pharma_raw():
     Liquid clustering on datum and prod_id for date/product filtering.
     Includes _loaded_at timestamp and _source_file for audit trail.
     """
-    # Auto Loader to read from S3
+    # Auto Loader to read from S3 - serverless manages schema location automatically
     df = (spark.readStream
           .format("cloudFiles")
           .option("cloudFiles.format", "csv")
-          .option("cloudFiles.schemaLocation", "/tmp/pharma_schema")
+          .option("cloudFiles.useIncrementalListing", "auto")
           .option("header", "true")
           .option("inferSchema", "true")
           .load("s3://amazon-l0-landing-prod/")
@@ -37,9 +37,9 @@ def bronze_pharma_raw():
                ") as (prod_id, sales)")
     ).filter(F.col("sales").isNotNull())  # Remove null sales
     
-    # Add audit columns
+    # Add audit columns - use Unity Catalog compatible _metadata
     return unpivoted.withColumn(
-        "_source_file", F.input_file_name()
+        "_source_file", F.col("_metadata.file_path")
     ).withColumn(
         "_loaded_at", F.current_timestamp()
     )
